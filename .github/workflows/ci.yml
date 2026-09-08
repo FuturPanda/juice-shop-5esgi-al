@@ -7,7 +7,7 @@
 #   - node-version: 22         (Juice Shop v20.1.1 déclare engines.node = "22 - 26")
 name: ci
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
