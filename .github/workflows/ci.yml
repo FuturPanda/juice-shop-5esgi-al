@@ -3,8 +3,7 @@
 #
 # Versions vérifiées le 2026-09-05 :
 #   - actions/checkout@v7      (dernier tag publié : v7.0.1)
-#   - actions/setup-node@v7    (release v7.0.0 du 2026-07)
-#   - node-version: 22         (Juice Shop v20.1.1 déclare engines.node = "22 - 26")
+#   - jdx/mise-action@v4       (versions Node.js et npm définies dans mise.toml)
 name: ci
 
 on: [push, pull_request, workflow_dispatch]
@@ -14,20 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+      - uses: jdx/mise-action@v4
+      - run: mise exec -- npm ci
+      - run: mise exec -- npm run build
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
+      - uses: jdx/mise-action@v4
+      - run: mise exec -- npm ci
+      - run: mise exec -- npm run lint
